@@ -12,4 +12,12 @@ public class Cliente
     public string Direccion { get => direccion; set => direccion = value; }
     public string Telefono { get => telefono; set => telefono = value; }
     public string ReferenciaDireccion { get => referenciaDireccion; set => referenciaDireccion = value; }
+
+    public Cliente(string nombre, string direccion, string telefono, string referenciaDireccion)
+    {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.referenciaDireccion = referenciaDireccion;
+    }
 }
