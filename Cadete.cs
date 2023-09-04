@@ -9,53 +9,66 @@ public class Cadete
     private string telefono;
     private List<Pedido> listadoPedidos;
 
+
     public int Id { get => id; set => id = value; }
     public string Nombre { get => nombre; set => nombre = value; }
     public string Direccion { get => direccion; set => direccion = value; }
     public string Telefono { get => telefono; set => telefono = value; }
     public List<Pedido> ListadoPedidos { get => listadoPedidos; set => listadoPedidos = value; }
 
+    public Cadete(int id, string nombre, string direccion, string telefono)
+    {
+        this.id = id;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+    }
+
 
     public float JornalACobrar()
     {
-        float aux = 0;
+        float cont = 0;
 
         foreach (var ped in listadoPedidos)
         {
             if (ped.Est == Pedido.Estado.Entregado)
             {
-                aux++;
+                cont++;
             }
         }
 
-        aux *= 500;
+        cont *= 500;
 
-        return aux;
+        return cont;
     }
 
-    public void CambiarEstadoPedido(Pedido pedido, int cambio) // cambio = 0 cancelado, = 1 encamino, = 2 entregado
+    public void CambiarEstadoPedido(int nroPedido, int cambio) // cambio = 0 cancelado, = 1 encamino, = 2 entregado
     {
-        if (listadoPedidos.Contains(pedido))
+        foreach (var pedido in listadoPedidos)
         {
-            if (pedido.Est == Pedido.Estado.Pendiente)
+            if (pedido.Nro == nroPedido)
             {
-                if (cambio == 0)
+                if (pedido.Est == Pedido.Estado.Pendiente)
                 {
-                    pedido.Est = Pedido.Estado.Cancelado;
-                    listadoPedidos.RemoveAt(pedido.Nro);
+                    if (cambio == 0)
+                    {
+                        pedido.Est = Pedido.Estado.Cancelado;
+                        listadoPedidos.RemoveAt(pedido.Nro);
+                    }
+                    else
+                    {
+                        pedido.Est = Pedido.Estado.EnCamino;
+                    }
                 }
                 else
                 {
-                    pedido.Est = Pedido.Estado.EnCamino;
+                    if (pedido.Est == Pedido.Estado.EnCamino)
+                    {
+                        pedido.Est = Pedido.Estado.Entregado;
+                        //pasar la info al informe	
+                    }
                 }
-            }
-            else
-            {
-                if (pedido.Est == Pedido.Estado.EnCamino)
-                {
-                    pedido.Est = Pedido.Estado.Entregado;
-                    //pasar la info al informe	
-                }
+                break;
             }
         }
     }

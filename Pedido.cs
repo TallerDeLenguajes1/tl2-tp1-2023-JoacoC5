@@ -30,14 +30,24 @@ public class Pedido
         Entregado,
     }
 
-    private void VerDireccionCliente(Cliente cliente)
+    public void VerDireccionCliente(Cliente cliente)
     {
         Console.WriteLine("Direccion cliente: " + cliente.Direccion);
     }
 
-    private void VerDatosCliente(Cliente cliente)
+    public void VerDatosCliente(Cliente cliente)
     {
         Console.WriteLine("Referencia de direccion: " + cliente.ReferenciaDireccion);
+    }
+
+    public void CargarCliente(string nombre, string telefono, string direc, string datosDirec)
+    {
+        cliente.Nombre = nombre;
+        cliente.Telefono = telefono;
+        cliente.Direccion = direc;
+        cliente.ReferenciaDireccion = datosDirec;
+
+
     }
 
 

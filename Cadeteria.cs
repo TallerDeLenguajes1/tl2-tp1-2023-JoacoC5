@@ -9,9 +9,19 @@ public class Cadeteria
     private string telefono;
     private List<Cadete> listaCadetes;
 
+
     public string Nombre { get => nombre; set => nombre = value; }
     public string Telefono { get => telefono; set => telefono = value; }
-    public List<Cadete> ListaCadetes { get => listaCadetes; set => listaCadetes = value; }
+    //public List<Cadete> ListaCadetes { get => listaCadetes; set => listaCadetes = value; }
+
+    public Cadeteria(string nombre, string telefono, List<Cadete> lista)
+    {
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.listaCadetes = new List<Cadete>();
+        this.listaCadetes.AddRange(lista);
+    }
+
 
 
     public void AgregarCadete(Cadete cadete)
@@ -42,6 +52,14 @@ public class Cadeteria
         else
         {
             cad2.ListadoPedidos.Add(pedido);
+        }
+    }
+
+    public void MostrarCadetes()
+    {
+        foreach (var item in listaCadetes)
+        {
+            Console.WriteLine(item.Nombre);
         }
     }
 
