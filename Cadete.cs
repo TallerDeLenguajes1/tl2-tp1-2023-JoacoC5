@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.IO;
+using EspacioPedido;
 
 public class Cadete
 {
@@ -31,7 +32,7 @@ public class Cadete
 
         foreach (var ped in listadoPedidos)
         {
-            if (ped.Est == Pedido.Estado.Entregado)
+            if (ped.Est == Estado.Entregado)
             {
                 cont++;
             }
@@ -48,23 +49,23 @@ public class Cadete
         {
             if (pedido.Nro == nroPedido)
             {
-                if (pedido.Est == Pedido.Estado.Pendiente)
+                if (pedido.Est == Estado.Pendiente)
                 {
                     if (cambio == 0)
                     {
-                        pedido.Est = Pedido.Estado.Cancelado;
+                        pedido.Est = Estado.Cancelado;
                         listadoPedidos.RemoveAt(pedido.Nro);
                     }
                     else
                     {
-                        pedido.Est = Pedido.Estado.EnCamino;
+                        pedido.Est = Estado.EnCamino;
                     }
                 }
                 else
                 {
-                    if (pedido.Est == Pedido.Estado.EnCamino)
+                    if (pedido.Est == Estado.EnCamino)
                     {
-                        pedido.Est = Pedido.Estado.Entregado;
+                        pedido.Est = Estado.Entregado;
                         //pasar la info al informe	
                     }
                 }

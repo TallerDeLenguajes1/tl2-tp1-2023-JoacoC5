@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.IO;
+using EspacioPedido;
 
 namespace Empresa;
 
@@ -8,10 +9,13 @@ public class Cadeteria
     private string nombre;
     private string telefono;
     private List<Cadete> listaCadetes;
+    private List<Pedido> listaPedidos;
 
 
     public string Nombre { get => nombre; set => nombre = value; }
     public string Telefono { get => telefono; set => telefono = value; }
+    public List<Pedido> ListaPedidos { get => listaPedidos; set => listaPedidos = value; }
+
     //public List<Cadete> ListaCadetes { get => listaCadetes; set => listaCadetes = value; }
 
     public Cadeteria(string nombre, string telefono, List<Cadete> lista)
@@ -53,6 +57,18 @@ public class Cadeteria
         {
             cad2.ListadoPedidos.Add(pedido);
         }
+    }
+
+    public void AltaPedido(int num, string obser, Estado estado, string nomCLi, string telCLi, string dirCli, string datosDir)
+    {
+        Pedido auxPedido = new(num, obser, estado, CargarCliente(nomCLi, telCLi, dirCli, datosDir));
+        listaPedidos.Add(auxPedido);
+    }
+
+    public Cliente CargarCliente(string nombre, string telefono, string direc, string datosDirec)
+    {
+        Cliente auxCliente = new(nombre, telefono, direc, datosDirec);
+        return auxCliente;
     }
 
     public void MostrarCadetes()

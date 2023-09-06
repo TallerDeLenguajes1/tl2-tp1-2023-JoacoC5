@@ -1,6 +1,15 @@
 using System.Text.Json;
 using System.IO;
+namespace EspacioPedido;
 
+
+public enum Estado
+{
+    Pendiente,
+    Cancelado,
+    EnCamino,
+    Entregado,
+}
 public class Pedido
 {
     private int nro;
@@ -22,13 +31,7 @@ public class Pedido
         this.cliente = cliente;
     }
 
-    public enum Estado
-    {
-        Pendiente,
-        Cancelado,
-        EnCamino,
-        Entregado,
-    }
+
 
     public void VerDireccionCliente(Cliente cliente)
     {
@@ -38,16 +41,6 @@ public class Pedido
     public void VerDatosCliente(Cliente cliente)
     {
         Console.WriteLine("Referencia de direccion: " + cliente.ReferenciaDireccion);
-    }
-
-    public void CargarCliente(string nombre, string telefono, string direc, string datosDirec)
-    {
-        cliente.Nombre = nombre;
-        cliente.Telefono = telefono;
-        cliente.Direccion = direc;
-        cliente.ReferenciaDireccion = datosDirec;
-
-
     }
 
 
