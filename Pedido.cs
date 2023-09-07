@@ -23,6 +23,10 @@ public class Pedido
     public Cliente Cliente { get => cliente; set => cliente = value; }
     internal Estado Est { get => est; set => est = value; }
 
+    public Pedido()
+    {
+
+    }
     public Pedido(int nro, string obs, Estado est, Cliente cliente)
     {
         this.nro = nro;

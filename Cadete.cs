@@ -43,34 +43,5 @@ public class Cadete
         return cont;
     }
 
-    public void CambiarEstadoPedido(int nroPedido, int cambio) // cambio = 0 cancelado, = 1 encamino, = 2 entregado
-    {
-        foreach (var pedido in listadoPedidos)
-        {
-            if (pedido.Nro == nroPedido)
-            {
-                if (pedido.Est == Estado.Pendiente)
-                {
-                    if (cambio == 0)
-                    {
-                        pedido.Est = Estado.Cancelado;
-                        listadoPedidos.RemoveAt(pedido.Nro);
-                    }
-                    else
-                    {
-                        pedido.Est = Estado.EnCamino;
-                    }
-                }
-                else
-                {
-                    if (pedido.Est == Estado.EnCamino)
-                    {
-                        pedido.Est = Estado.Entregado;
-                        //pasar la info al informe	
-                    }
-                }
-                break;
-            }
-        }
-    }
+
 }

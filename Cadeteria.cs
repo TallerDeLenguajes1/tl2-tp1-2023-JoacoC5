@@ -16,7 +16,7 @@ public class Cadeteria
     public string Telefono { get => telefono; set => telefono = value; }
     public List<Pedido> ListaPedidos { get => listaPedidos; set => listaPedidos = value; }
 
-    //public List<Cadete> ListaCadetes { get => listaCadetes; set => listaCadetes = value; }
+    public List<Cadete> ListaCadetes { get => listaCadetes; set => listaCadetes = value; }
 
     public Cadeteria(string nombre, string telefono, List<Cadete> lista)
     {
@@ -69,6 +69,37 @@ public class Cadeteria
     {
         Cliente auxCliente = new(nombre, telefono, direc, datosDirec);
         return auxCliente;
+    }
+
+    public void CambiarEstadoPedido(int nroPedido, int cambio) // cambio = 0 cancelado, = 1 encamino, = 2 entregado
+    {
+        foreach (var pedido in listaPedidos)
+        {
+            if (pedido.Nro == nroPedido)
+            {
+                if (pedido.Est == Estado.Pendiente)
+                {
+                    if (cambio == 0)
+                    {
+                        pedido.Est = Estado.Cancelado;
+                        listaPedidos.RemoveAt(pedido.Nro);
+                    }
+                    else
+                    {
+                        pedido.Est = Estado.EnCamino;
+                    }
+                }
+                else
+                {
+                    if (pedido.Est == Estado.EnCamino)
+                    {
+                        pedido.Est = Estado.Entregado;
+                        //pasar la info al informe	
+                    }
+                }
+                break;
+            }
+        }
     }
 
     public void MostrarCadetes()
