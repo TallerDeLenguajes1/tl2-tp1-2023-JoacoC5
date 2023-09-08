@@ -77,36 +77,62 @@ public class Cadeteria
         {
             if (pedido.Nro == nroPedido)
             {
-                if (pedido.Est == Estado.Pendiente)
+                //if (pedido.Est == Estado.Pendiente)
+                //{
+                if (cambio == 0)
                 {
-                    if (cambio == 0)
-                    {
-                        pedido.Est = Estado.Cancelado;
-                        listaPedidos.RemoveAt(pedido.Nro);
-                    }
-                    else
-                    {
-                        pedido.Est = Estado.EnCamino;
-                    }
+                    pedido.Est = Estado.Cancelado;
+                    listaPedidos.RemoveAt(pedido.Nro);
                 }
                 else
                 {
-                    if (pedido.Est == Estado.EnCamino)
+                    if (cambio == 1)
                     {
-                        pedido.Est = Estado.Entregado;
-                        //pasar la info al informe	
+                        pedido.Est = Estado.EnCamino;
+                    }
+                    else
+                    {
+                        if (cambio == 2)
+                        {
+                            pedido.Est = Estado.Entregado;
+                        }
                     }
                 }
+                //}
+                /*else
+                {
+                    if (pedido.Est == Estado.EnCamino)
+                    {
+                        
+                    }
+                }*/
                 break;
             }
         }
     }
 
-    public void MostrarCadetes()
+    public void MostrarInfo()
     {
         foreach (var item in listaCadetes)
         {
+            float aux = item.JornalACobrar();
             Console.WriteLine(item.Nombre);
+            Console.WriteLine("Ganacia del cadete: " + aux);
+
+        }
+    }
+
+    public void EstadoPedido()
+    {
+        foreach (var item in listaCadetes)
+        {
+            Console.WriteLine("Nombre del cadete: " + item.Nombre);
+            foreach (var cad in item.ListadoPedidos)
+            {
+                Console.WriteLine("Pedido nro: " + cad.Nro);
+                Console.WriteLine("Estado: " + cad.Est);
+            }
+            Console.WriteLine("Jornal a cobrar por el cadete: " + item.JornalACobrar());
         }
     }
 

@@ -8,10 +8,10 @@ public class Cliente
     private string telefono;
     private string referenciaDireccion;
 
-    public string Nombre { get => nombre; set => nombre = value; }
-    public string Direccion { get => direccion; set => direccion = value; }
-    public string Telefono { get => telefono; set => telefono = value; }
-    public string ReferenciaDireccion { get => referenciaDireccion; set => referenciaDireccion = value; }
+    public string Nombre { get => nombre; }
+    public string Direccion { get => direccion; }
+    public string Telefono { get => telefono; }
+    public string ReferenciaDireccion { get => referenciaDireccion; }
 
     public Cliente(string nombre, string direccion, string telefono, string referenciaDireccion)
     {

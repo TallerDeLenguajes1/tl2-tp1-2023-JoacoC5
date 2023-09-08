@@ -37,7 +37,6 @@ internal class Program
         while ((linea = archivo.ReadLine()) != null)
         {
             string[] fila = linea.Split(",").ToArray();
-            //Console.WriteLine(fila[0] + fila[1] + fila[2] + fila[3]);
             Cadete auxCadete = new(cont, fila[1], fila[2], fila[3]);
             listaCadetes.Add(auxCadete);
             cont++;
@@ -49,17 +48,17 @@ internal class Program
         for (int i = 0; i < cantCadetes; i++)
         {
             selecCadetes.Add(listaCadetes[i]);
+            Console.WriteLine(selecCadetes[i].Nombre);
         }
 
-        for (int i = 0; i < cantCadetes; i++)
+        foreach (var item in selecCadetes)
         {
-
+            item.ListadoPedidos = new List<Pedido>();
         }
         Cadeteria empresa = new(nomCadeteria[auxSeleccion], telCadeteria[auxSeleccion], selecCadetes);
 
-        //empresa.MostrarCadetes();
-
         int accion = 5;
+        empresa.ListaPedidos = new List<Pedido>();
 
         do
         {
@@ -96,7 +95,7 @@ internal class Program
                 case 2:
                     int numPedido = NumeroPedido();
                     empresa.AsignarPedido(empresa.ListaPedidos[numPedido - 1],
-                                            empresa.ListaCadetes[ran.Next(1, empresa.ListaCadetes.Count())]);
+                                            empresa.ListaCadetes[(ran.Next(1, empresa.ListaCadetes.Count()) - 1)]);
                     break;
                 case 3:
                     int numPed = NumeroPedido();
@@ -121,7 +120,9 @@ internal class Program
         } while (accion != 0);
 
 
+        empresa.EstadoPedido();
 
+        //empresa.MostrarInfo();
 
 
 
