@@ -78,8 +78,6 @@ public class Cadeteria
         {
             if (pedido.Nro == nroPedido)
             {
-                //if (pedido.Est == Estado.Pendiente)
-                //{
                 if (cambio == 0)
                 {
                     pedido.Est = Estado.Cancelado;
@@ -99,17 +97,20 @@ public class Cadeteria
                         }
                     }
                 }
-                //}
-                /*else
-                {
-                    if (pedido.Est == Estado.EnCamino)
-                    {
-                        
-                    }
-                }*/
                 break;
             }
         }
+    }
+
+    public float Recaudacion()
+    {
+        float recaudacion = 0;
+        foreach (var item in listaCadetes)
+        {
+            recaudacion += item.JornalACobrar();
+        }
+
+        return recaudacion;
     }
 
     public void MostrarInfo()

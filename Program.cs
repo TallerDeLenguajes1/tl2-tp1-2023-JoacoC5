@@ -48,7 +48,7 @@ internal class Program
         for (int i = 0; i < cantCadetes; i++)
         {
             selecCadetes.Add(listaCadetes[i]);
-            Console.WriteLine(selecCadetes[i].Nombre);
+            //Console.WriteLine(selecCadetes[i].Nombre);
         }
 
         foreach (var item in selecCadetes)
@@ -62,7 +62,7 @@ internal class Program
 
         do
         {
-            Console.WriteLine("----GESTION DE PEDIDOS----");
+            Console.WriteLine("\n----GESTION DE PEDIDOS----");
             Console.WriteLine("Seleccione la accion a ejecutar: ");
             Console.WriteLine("\n1. Dar de alta pedidos");
             Console.WriteLine("\n2. Asignar pedido a cadete");
@@ -94,8 +94,9 @@ internal class Program
 
                 case 2:
                     int numPedido = NumeroPedido();
+                    int indicador = ran.Next(1, empresa.ListaCadetes.Count()) - 1;
                     empresa.AsignarPedido(empresa.ListaPedidos[numPedido - 1],
-                                            empresa.ListaCadetes[(ran.Next(1, empresa.ListaCadetes.Count()) - 1)]);
+                                            empresa.ListaCadetes[indicador]);
                     break;
                 case 3:
                     int numPed = NumeroPedido();
@@ -120,9 +121,9 @@ internal class Program
         } while (accion != 0);
 
 
-        //empresa.EstadoPedido();
+        AccesoADatos info = new AccesoADatos();
+        info.CargarInforme(empresa);
 
-        //empresa.MostrarInfo();
     }
 
     private static int NumeroPedido()
