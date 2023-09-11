@@ -120,14 +120,9 @@ internal class Program
         } while (accion != 0);
 
 
-        empresa.EstadoPedido();
+        //empresa.EstadoPedido();
 
         //empresa.MostrarInfo();
-
-
-
-
-
     }
 
     private static int NumeroPedido()

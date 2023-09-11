@@ -13,6 +13,7 @@ public class Cadeteria
 
 
     public string Nombre { get => nombre; set => nombre = value; }
+    //Creo q tanto el atributo nombre como el telefono podrian ser unicamente con get
     public string Telefono { get => telefono; set => telefono = value; }
     public List<Pedido> ListaPedidos { get => listaPedidos; set => listaPedidos = value; }
 
