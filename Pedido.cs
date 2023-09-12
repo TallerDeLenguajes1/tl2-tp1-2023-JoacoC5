@@ -16,12 +16,14 @@ public class Pedido
     private string obs;
     private Estado est;
     private Cliente cliente;
+    private Cadete cadete;
 
 
     public int Nro { get => nro; set => nro = value; }
     public string Obs { get => obs; set => obs = value; }
     public Cliente Cliente { get => cliente; set => cliente = value; }
     public Estado Est { get => est; set => est = value; }
+    public Cadete Cadete { get => cadete; set => cadete = value; }
 
     public Pedido()
     {

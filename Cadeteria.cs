@@ -34,29 +34,24 @@ public class Cadeteria
         listaCadetes.Add(cadete);
     }
 
-    public void AsignarPedido(Pedido pedido, Cadete cad)
+    public void AsignarPedido(int nroP, int idC)
     {
-        if (listaCadetes.Contains(cad))
+        if (listaCadetes.Exists(x => x.Id == idC))
         {
-            cad.ListadoPedidos.Add(pedido);
-        }
-        else
-        {
-            listaCadetes.Add(cad);
-            cad.ListadoPedidos.Add(pedido);
+            listaPedidos[nroP].Cadete = listaCadetes.Find(x => x.Id == idC);
+            //ESTO SUPONIENDO QUE EL NUMERO DEL PEDIDO COINCIDE CON SI INDICE DE LISTA
         }
     }
 
     public void ReasignarPedido(Pedido pedido, Cadete cad1, Cadete cad2)
     {
-        if (cad1.ListadoPedidos.Contains(pedido))
+        if (pedido.Cadete == cad1)
         {
-            cad1.ListadoPedidos.RemoveAt(pedido.Nro);
-            cad2.ListadoPedidos.Add(pedido);
+            pedido.Cadete = cad2;
         }
         else
         {
-            cad2.ListadoPedidos.Add(pedido);
+            pedido.Cadete = cad2;
         }
     }
 
@@ -102,18 +97,36 @@ public class Cadeteria
         }
     }
 
+    public float JornalACobrar(int id) // CAMBIAR
+    {
+        float cont = 0;
+
+        List<Pedido> auxiliar = listaPedidos.FindAll(x => x.Cadete.Id == id).ToList();
+
+        for (int i = 0; i < auxiliar.Count(); i++)
+        {
+            if (auxiliar[i].Est == Estado.Entregado)
+            {
+                cont++;
+            }
+        }
+
+        return cont * 500;
+    }
+
     public float Recaudacion()
     {
         float recaudacion = 0;
-        foreach (var item in listaCadetes)
+
+        for (int i = 0; i < listaCadetes.Count(); i++)
         {
-            recaudacion += item.JornalACobrar();
+            recaudacion += JornalACobrar(listaCadetes[i].Id);
         }
 
         return recaudacion;
     }
 
-    public void MostrarInfo()
+    /*public void MostrarInfo()
     {
         foreach (var item in listaCadetes)
         {
@@ -136,7 +149,7 @@ public class Cadeteria
             }
             Console.WriteLine("Jornal a cobrar por el cadete: " + item.JornalACobrar());
         }
-    }
+    }*/
 
 }
 
