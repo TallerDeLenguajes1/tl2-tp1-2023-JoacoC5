@@ -13,22 +13,23 @@ class AccesoADatos
 
         float porcentaje;
         int cantIndividual;
-        archivo.WriteLine("\nListado de Cadetes");
-        foreach (var item in cadeteria.ListaCadetes)
+        archivo.WriteLine("\nListado de Pedidos");
+        foreach (var item in cadeteria.ListaPedidos)
         {
-            archivo.WriteLine("\nId: " + item.Id);
+            archivo.WriteLine("\n Numero de pedido: " + item.Nro);
+            archivo.WriteLine("Estado: " + item.Est);
+            //archivo.WriteLine("Cadete a cargo: " + item.Cadete.Nombre);
+            /*archivo.WriteLine("\nId: " + item.Id);
             archivo.WriteLine("Nombre: " + item.Nombre);
             archivo.WriteLine("Telefono: " + item.Telefono);
             archivo.WriteLine("Direccion: " + item.Direccion);
-            string jsonString = JsonSerializer.Serialize(item.ListadoPedidos);
+            string jsonString = JsonSerializer.Serialize(cadeteria.ListadoPedidos);
             archivo.WriteLine("Listado de Pedidos: \n" + jsonString);
             cantIndividual = item.ListadoPedidos.Count();
             porcentaje = (cantIndividual * 100) / cadeteria.ListaPedidos.Count();
             archivo.WriteLine("\nCantidad de pedidos: " + cantIndividual);
             archivo.WriteLine("Ganacia individual: " + item.JornalACobrar());
-            archivo.WriteLine("Porcentaje de pedido: " + porcentaje);
-
-
+            archivo.WriteLine("Porcentaje de pedido: " + porcentaje);*/
         }
 
         archivo.WriteLine("\n\nRecaudacion total: " + cadeteria.Recaudacion());

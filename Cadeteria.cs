@@ -101,13 +101,14 @@ public class Cadeteria
     {
         float cont = 0;
 
-        List<Pedido> auxiliar = listaPedidos.FindAll(x => x.Cadete.Id == id).ToList();
-
-        for (int i = 0; i < auxiliar.Count(); i++)
+        for (int i = 0; i < listaPedidos.Count(); i++)
         {
-            if (auxiliar[i].Est == Estado.Entregado)
+            if (listaPedidos[i].Cadete.Id == id)
             {
-                cont++;
+                if (listaPedidos[i].Est == Estado.Entregado)
+                {
+                    cont++;
+                }
             }
         }
 

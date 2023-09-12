@@ -45,16 +45,14 @@ internal class Program
         Console.WriteLine("\nIngrese cuantos cadetes tendra la cadeteria: ");
         int.TryParse(Console.ReadLine(), out cantCadetes);
         List<Cadete> selecCadetes = new List<Cadete>();
+        Console.WriteLine("\n---CADETES---\n");
         for (int i = 0; i < cantCadetes; i++)
         {
             selecCadetes.Add(listaCadetes[i]);
-            //Console.WriteLine(selecCadetes[i].Nombre);
+            //Console.WriteLine(selecCadetes[i].Id);
+            Console.WriteLine(selecCadetes[i].Nombre);
         }
 
-        foreach (var item in selecCadetes)
-        {
-            item.ListadoPedidos = new List<Pedido>();
-        }
         Cadeteria empresa = new(nomCadeteria[auxSeleccion], telCadeteria[auxSeleccion], selecCadetes);
 
         int accion = 5;
@@ -95,8 +93,8 @@ internal class Program
                 case 2:
                     int numPedido = NumeroPedido();
                     int indicador = ran.Next(1, empresa.ListaCadetes.Count()) - 1;
-                    empresa.AsignarPedido(empresa.ListaPedidos[numPedido - 1],
-                                            empresa.ListaCadetes[indicador]);
+                    empresa.AsignarPedido(numPedido - 1, indicador);
+                    Console.WriteLine("El pedido fue asignado al cadete " + empresa.ListaCadetes[indicador].Nombre);
                     break;
                 case 3:
                     int numPed = NumeroPedido();
