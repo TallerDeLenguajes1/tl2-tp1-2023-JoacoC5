@@ -119,7 +119,7 @@ internal class Program
         } while (accion != 0);
 
 
-        AccesoADatos info = new AccesoADatos();
+        Informe info = new Informe();
         info.CargarInforme(empresa);
 
     }

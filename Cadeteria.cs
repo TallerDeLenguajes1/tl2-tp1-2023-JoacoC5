@@ -16,7 +16,6 @@ public class Cadeteria
     //Creo q tanto el atributo nombre como el telefono podrian ser unicamente con get
     public string Telefono { get => telefono; set => telefono = value; }
     public List<Pedido> ListaPedidos { get => listaPedidos; set => listaPedidos = value; }
-
     public List<Cadete> ListaCadetes { get => listaCadetes; set => listaCadetes = value; }
 
     public Cadeteria(string nombre, string telefono, List<Cadete> lista)
